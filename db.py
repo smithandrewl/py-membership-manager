@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, Table, create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, sessionmaker
 
 from sqlalchemy_utils import database_exists, create_database
 
@@ -10,7 +10,7 @@ Base = declarative_base()
 class_members_table = Table(
     'class_member',
     Base.metadata,
-    Column('club_id', Integer, ForeignKey('club.club_id')),
+    Column('class_id', Integer, ForeignKey('class.class_id')),
     Column('member_id', Integer, ForeignKey('member.member_id'))
 )
 
@@ -44,11 +44,37 @@ class Member(Base):
 
 
 engine = create_engine('sqlite:///club.db', echo=True)
+Session = sessionmaker(bind=engine)
+
 
 
 def create_db():
     if not database_exists(engine.url):
         create_database(engine.url)
-    else:
         Base.metadata.create_all(engine)
+        ClubDAO.insert_default_club()
+    else:
         Base.metadata.bind = engine
+
+
+class ClubDAO:
+    model = Club
+
+    @staticmethod
+    def insert_default_club():
+        print("Inside insert_default_club")
+        session = Session()
+        session.add(Club(name='Bob', description=''))
+
+        print("Calling session.commit()")
+        session.commit()
+        print("finished")
+
+    @staticmethod
+    def get_club():
+        session = Session()
+        return session.query(Club)[0]
+
+    @staticmethod
+    def get_club_name():
+        return ClubDAO.get_club().name

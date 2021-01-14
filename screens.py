@@ -1,3 +1,6 @@
+import db
+
+
 class ScreenManager:
     def __init__(self, initial_state):
         self.initial_state = initial_state
@@ -36,10 +39,14 @@ class MainScreen:
         )
 
     def display_menu_prompt(self):
+
+
+        club_name = db.ClubDAO.get_club_name()
+
         print(
             "\n".join(
                 [
-                    "Welcome to club 'Unknown' Please enter a number:",
+                    "Welcome to club '" + club_name + "' Please enter a number:",
                     "1. Administration",
                     "2. Members",
                     "3. Classes",
