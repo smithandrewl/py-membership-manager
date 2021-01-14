@@ -5,13 +5,12 @@
 
 import db
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
 # Press the green button in the gutter to run the script.
+from screens import ScreenManager, MainScreen
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    screen_manager = ScreenManager(MainScreen())
+    screen_manager.start()
+
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
