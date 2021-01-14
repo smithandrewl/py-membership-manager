@@ -9,6 +9,21 @@ class ScreenManager:
         self.initial_state.init(self)
         self.initial_state.run()
 
+class AdminScreen:
+    def init(self, screen_manager):
+        self.screen_manager = screen_manager
+
+    def display_menu(self):
+        print(
+            "\n".join([
+                "Admin screen!",
+                "Please enter a number:",
+                "1. Change the club name",
+                "2. Return to the main menu"
+            ])
+        )
+    def run(self):
+        self.display_menu()
 
 class MainScreen:
     def init(self, screen_manager):
@@ -16,7 +31,17 @@ class MainScreen:
 
     def run(self):
         self.display_banner()
-        self.display_menu_prompt()
+
+        while(True):
+            self.display_menu_prompt()
+            choice = input()
+
+            if choice == "1":
+                print("You selected option 1")
+            elif choice == "2":
+                print("You selected option 2")
+            else:
+                print("Invalid selection")
 
     def display_banner(self):
         print(
