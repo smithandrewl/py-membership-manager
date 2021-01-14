@@ -45,8 +45,10 @@ class Member(Base):
 
 engine = create_engine('sqlite:///club.db', echo=True)
 
-if not database_exists(engine.url):
-    create_database(engine.url)
-else:
-    Base.metadata.create_all(engine)
-    Base.metadata.bind = engine
+
+def create_db():
+    if not database_exists(engine.url):
+        create_database(engine.url)
+    else:
+        Base.metadata.create_all(engine)
+        Base.metadata.bind = engine
