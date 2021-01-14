@@ -43,9 +43,8 @@ class Member(Base):
     club = relationship("Club", back_populates="members")
 
 
-engine = create_engine('sqlite:///club.db', echo=True)
+engine = create_engine('sqlite:///club.db')
 Session = sessionmaker(bind=engine)
-
 
 
 def create_db():
