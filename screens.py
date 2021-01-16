@@ -36,10 +36,10 @@ class AdminScreen:
                 new_name = input("Please enter the new name:")
 
                 ClubDAO.change_club_name(new_name)
-
-            if choice == "2":
+            elif choice == "2":
                 self.screen_manager.change_screen(MainScreen())
-
+            else:
+                print('Error: Please enter a valid option!')
 class MainScreen:
     def init(self, screen_manager):
         self.screen_manager = screen_manager
