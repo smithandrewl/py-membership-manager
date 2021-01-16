@@ -15,6 +15,7 @@ class ScreenManager:
         self.initial_state.init(self)
         self.initial_state.run()
 
+
 class AdminScreen:
     def init(self, screen_manager):
         self.screen_manager = screen_manager
@@ -28,6 +29,7 @@ class AdminScreen:
                 "2. Return to the main menu"
             ])
         )
+
     def run(self):
         while(True):
             self.display_menu()
@@ -40,6 +42,7 @@ class AdminScreen:
                 self.screen_manager.change_screen(MainScreen())
             else:
                 print('Error: Please enter a valid option!')
+
 
 class ClassesScreen:
     def init(self, screen_manager):
@@ -132,6 +135,7 @@ class MembersScreen:
             else:
                 print("Error: Please enter a valid option!")
 
+
 class MainScreen:
     def init(self, screen_manager):
         self.screen_manager = screen_manager
@@ -177,8 +181,6 @@ class MainScreen:
         )
 
     def display_menu_prompt(self):
-
-
         club_name = ClubDAO.get_club_name()
 
         print(
