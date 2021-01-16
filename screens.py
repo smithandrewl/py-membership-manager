@@ -9,6 +9,11 @@ class ScreenManager:
         self.initial_state.init(self)
         self.initial_state.run()
 
+    def change_screen(self, new_screen):
+        self.initial_state = new_screen
+        self.initial_state.init(self)
+        self.initial_state.run()
+
 class AdminScreen:
     def init(self, screen_manager):
         self.screen_manager = screen_manager
@@ -23,7 +28,13 @@ class AdminScreen:
             ])
         )
     def run(self):
-        self.display_menu()
+        while(True):
+            self.display_menu()
+            choice = input()
+            if choice == "1":
+                print("You chose option 1")
+            if choice == "2":
+                self.screen_manager.change_screen(MainScreen())
 
 class MainScreen:
     def init(self, screen_manager):
@@ -38,6 +49,7 @@ class MainScreen:
 
             if choice == "1":
                 print("You selected option 1")
+                self.screen_manager.change_screen(AdminScreen())
             elif choice == "2":
                 print("You selected option 2")
             else:
