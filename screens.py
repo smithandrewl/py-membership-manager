@@ -51,7 +51,12 @@ class MainScreen:
                 print("You selected option 1")
                 self.screen_manager.change_screen(AdminScreen())
             elif choice == "2":
-                print("You selected option 2")
+                print("You 'Members'")
+            elif choice == "3":
+                print("You selected 'Classes'")
+            elif choice == "4":
+                import sys
+                sys.exit()
             else:
                 print("Invalid selection")
 
