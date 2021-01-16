@@ -33,7 +33,6 @@ class AdminScreen:
             self.display_menu()
             choice = input()
             if choice == "1":
-                print("You chose option 1")
                 new_name = input("Please enter a club name:")
 
                 ClubDAO.change_club_name(new_name)
