@@ -41,6 +41,34 @@ class AdminScreen:
             else:
                 print('Error: Please enter a valid option!')
 
+class ClassesScreen:
+    def init(self, screen_manager):
+        self.screen_manager = screen_manager
+
+    def display_menu(self):
+        print(
+            "\n".join(
+                [
+                    "Classes screen!",
+                    "Please enter a number:",
+                    "1. List classes",
+                    "2. Add a class",
+                    "3. Return to the main menu",
+                ]
+            )
+        )
+
+    def run(self):
+        while(True):
+            self.display_menu()
+
+            choice = input()
+
+            if choice == "3":
+                self.screen_manager.change_screen(MainScreen())
+            else:
+                print("Option not implemented yet")
+
 
 class MembersScreen:
     def init(self, screen_manager):
@@ -87,7 +115,7 @@ class MainScreen:
             elif choice == "2":
                 self.screen_manager.change_screen(MembersScreen())
             elif choice == "3":
-                print("You selected 'Classes'")
+                self.screen_manager.change_screen(ClassesScreen())
             elif choice == "4":
                 import sys
                 sys.exit()
