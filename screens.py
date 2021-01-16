@@ -62,7 +62,7 @@ class MainScreen:
                 import sys
                 sys.exit()
             else:
-                print("Invalid selection")
+                print("Error: Please enter a valid option!")
 
     def display_banner(self):
         print(
