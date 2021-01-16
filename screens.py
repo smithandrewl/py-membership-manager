@@ -78,17 +78,17 @@ class MembersScreen:
         print(
             "\n".join(
                 [
-                    "Members screen!",
-                    " Please enter a number:",
-                    " 1. List all members",
-                    " 2. Add a member",
-                    " 3. Delete a member",
-                    " 4. Return to the main menu"
+                    "Please enter a number:",
+                    "1. List all members",
+                    "2. Add a member",
+                    "3. Delete a member",
+                    "4. Return to the main menu"
                 ]
             )
         )
 
     def run(self):
+        print("Members screen!")
         while(True):
             self.display_menu()
 
@@ -96,9 +96,13 @@ class MembersScreen:
             if choice == "1":
                 members = MembersDAO.get_all()
 
-                print("Members:")
-                for member in members:
-                    print("\t#{0} {1}, {2}\n".format(member.member_id, member.firstname, member.lastname))
+                if members.count() == 0:
+                    print("There are currently no members!")
+                else:
+                    print("Members:")
+                    for member in members:
+                        print("\t#{0} {1}, {2}\n".format(member.member_id, member.firstname, member.lastname))
+
             elif choice == "2":
 
                 print("Adding a new member:")
@@ -109,11 +113,25 @@ class MembersScreen:
                 last_name = input()
 
                 MembersDAO.add_member(firstname=first_name, lastname=last_name)
+            elif choice == "3":
+                print("Delete a member")
+                print("Please enter the id of the member to delete")
+
+                number = input()
+
+                if not number.isnumeric():
+                    print("Please enter a valid number!")
+                else:
+                    if MembersDAO.exists(number):
+                        MembersDAO.delete(number)
+                    else:
+                        print("There is no user with an id of {0}".format(number))
 
             elif choice == "4":
                 self.screen_manager.change_screen(MainScreen())
             else:
-                print("Option not implemented yet")
+                print("Error: Please enter a valid option!")
+
 class MainScreen:
     def init(self, screen_manager):
         self.screen_manager = screen_manager

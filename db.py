@@ -59,6 +59,19 @@ class MembersDAO:
     model = Member
 
     @staticmethod
+    def exists(member_id):
+        session = Session()
+        exists = session.query(session.query(Member).filter(Member.member_id == member_id).exists()).scalar()
+        session.commit()
+
+        return exists
+
+    @staticmethod
+    def delete(member_id):
+        session = Session()
+        session.delete(session.query(Member).get(member_id))
+        session.commit()
+    @staticmethod
     def add_member(firstname, lastname):
         session = Session()
         session.add(Member(firstname=firstname, lastname=lastname))
