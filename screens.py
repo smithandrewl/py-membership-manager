@@ -1,4 +1,5 @@
-import db
+
+from db import *
 
 
 class ScreenManager:
@@ -33,6 +34,10 @@ class AdminScreen:
             choice = input()
             if choice == "1":
                 print("You chose option 1")
+                new_name = input("Please enter a club name:")
+
+                ClubDAO.change_club_name(new_name)
+
             if choice == "2":
                 self.screen_manager.change_screen(MainScreen())
 
@@ -83,7 +88,7 @@ class MainScreen:
     def display_menu_prompt(self):
 
 
-        club_name = db.ClubDAO.get_club_name()
+        club_name = ClubDAO.get_club_name()
 
         print(
             "\n".join(

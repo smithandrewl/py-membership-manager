@@ -77,3 +77,11 @@ class ClubDAO:
     @staticmethod
     def get_club_name():
         return ClubDAO.get_club().name
+
+    @staticmethod
+    def change_club_name(new_name):
+        session = Session()
+        club = session.query(Club).get(ClubDAO.get_club().club_id)
+
+        club.name = new_name
+        session.commit()
