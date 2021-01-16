@@ -93,8 +93,24 @@ class MembersScreen:
             self.display_menu()
 
             choice = input()
+            if choice == "1":
+                members = MembersDAO.get_all()
 
-            if choice == "4":
+                print("Members:")
+                for member in members:
+                    print("\t#{0} {1}, {2}\n".format(member.member_id, member.firstname, member.lastname))
+            elif choice == "2":
+
+                print("Adding a new member:")
+                print("Please enter a first name")
+
+                first_name = input()
+                print("Please enter a last name")
+                last_name = input()
+
+                MembersDAO.add_member(firstname=first_name, lastname=last_name)
+
+            elif choice == "4":
                 self.screen_manager.change_screen(MainScreen())
             else:
                 print("Option not implemented yet")

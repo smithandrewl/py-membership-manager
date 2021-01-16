@@ -55,7 +55,21 @@ def create_db():
     else:
         Base.metadata.bind = engine
 
+class MembersDAO:
+    model = Member
 
+    @staticmethod
+    def add_member(firstname, lastname):
+        session = Session()
+        session.add(Member(firstname=firstname, lastname=lastname))
+        session.commit()
+    @staticmethod
+    def get_all():
+        session = Session()
+        members = session.query(Member)
+        session.commit()
+
+        return members
 class ClubDAO:
     model = Club
 
