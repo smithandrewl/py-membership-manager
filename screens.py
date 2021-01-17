@@ -3,6 +3,10 @@ from db import *
 
 
 class ScreenManager:
+    """
+    This class manages the screens that can be accessed and displays
+    the current screen.
+    """
     def __init__(self, initial_state):
         self.initial_state = initial_state
 
@@ -17,6 +21,9 @@ class ScreenManager:
 
 
 class AdminScreen:
+    """
+    Implements the Admin menu screen.
+    """
     def init(self, screen_manager):
         self.screen_manager = screen_manager
 
@@ -45,6 +52,9 @@ class AdminScreen:
 
 
 class ClassesScreen:
+    """
+    Implements the Classes menu screen.
+    """
     def init(self, screen_manager):
         self.screen_manager = screen_manager
 
@@ -92,6 +102,9 @@ class ClassesScreen:
 
 
 class MembersScreen:
+    """
+    Provides the functionality of the Member screen.
+    """
     def init(self, screen_manager):
         self.screen_manager = screen_manager
 
@@ -157,6 +170,13 @@ class MembersScreen:
 
 
 class MainScreen:
+    """
+    The main menu screen.
+
+    The main menu screen displays a menu. Each selection from the main menu
+    hands control to a different screen.  Selecting 1. for Admin, would
+    hand control to the AdminScreen class.
+    """
     def init(self, screen_manager):
         self.screen_manager = screen_manager
 
