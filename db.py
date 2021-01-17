@@ -67,6 +67,7 @@ def create_db():
     else:
         Base.metadata.bind = engine
 
+
 class MembersDAO:
     """
     Provides access to the Members database table.
@@ -105,6 +106,7 @@ class MembersDAO:
         session = Session()
         session.add(Member(firstname=firstname, lastname=lastname))
         session.commit()
+
     @staticmethod
     def get_all():
         """
