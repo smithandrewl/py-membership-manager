@@ -67,7 +67,25 @@ class ClassesScreen:
 
             choice = input()
 
-            if choice == "3":
+            if choice == "1":
+                classes = ClassesDAO.get_classes()
+
+                if classes.count() == 0:
+                    print("There are no classes")
+                else:
+                    print()
+                    print("Classes:")
+                    for a_class in classes:
+                        print("\t{0} ({1})".format(a_class.name, a_class.description))
+
+                    print("\n")
+            elif choice == "2":
+                print("Please enter the class name")
+                name = input()
+                print("Please enter a class description")
+                description = input()
+                ClassesDAO.add(name, description, ClubDAO.get_club().club_id)
+            elif choice == "3":
                 self.screen_manager.change_screen(MainScreen())
             else:
                 print("Option not implemented yet")
@@ -99,13 +117,15 @@ class MembersScreen:
             if choice == "1":
                 members = MembersDAO.get_all()
 
+                print("\n")
+
                 if members.count() == 0:
                     print("There are currently no members!")
                 else:
                     print("Members:")
                     for member in members:
-                        print("\t#{0} {1}, {2}\n".format(member.member_id, member.firstname, member.lastname))
-
+                        print("\t#{0} {1}, {2}".format(member.member_id, member.firstname, member.lastname))
+                print("")
             elif choice == "2":
 
                 print("Adding a new member:")

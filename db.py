@@ -83,6 +83,26 @@ class MembersDAO:
         session.commit()
 
         return members
+
+
+class ClassesDAO:
+    model = Class
+
+    @staticmethod
+    def get_classes():
+        session = Session()
+        classes = session.query(Class)
+        session.commit()
+
+        return classes
+
+    @staticmethod
+    def add(name, description, club_id):
+        session = Session()
+        session.add(Class(name=name, description = description, club_id=club_id))
+        session.commit()
+
+
 class ClubDAO:
     model = Club
 
